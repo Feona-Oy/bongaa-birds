@@ -1,0 +1,53 @@
+{
+  "updated": "2026-10-12",
+  "items": [
+    {
+      "id": "2026-10-09-great-tit-record",
+      "date": "2026-10-09",
+      "source": "BirdLife Suomi",
+      "url": "https://www.birdlife.fi/lintutilanne-20261009/",
+      "title": {
+        "en": "Great tits break Finland's migration record",
+        "fi": "Talitiaiset rikkovat Suomen muuttoennätyksen",
+        "sv": "Talgoxar slår Finlands flyttrekord"
+      },
+      "summary": {
+        "en": "Great tits are moving in unusual numbers this autumn. At the Hanko bird observatory the Finnish one-day record fell twice: more than 11,000 birds on Tuesday 6 October and over 20,700 the next day. Cranes, geese and eiders are also passing southern Finland in large flocks.",
+        "fi": "Talitiaisia muuttaa tänä syksynä poikkeuksellisen paljon. Hangon lintuasemalla Suomen päiväennätys rikkoutui kahdesti: tiistaina 6.10. laskettiin yli 11 000 talitiaista ja seuraavana päivänä yli 20 700. Etelä-Suomen yli muuttaa myös kurkia, hanhia ja haahkoja suurina parvina.",
+        "sv": "Talgoxarna flyttar i ovanligt stora mängder i höst. Vid Hangö fågelstation slogs det finländska dygnsrekordet två gånger: över 11 000 fåglar tisdagen den 6 oktober och över 20 700 dagen därpå. Även tranor, gäss och ejdrar drar över södra Finland i stora flockar."
+      }
+    },
+    {
+      "id": "2026-10-06-eurobirdwatch",
+      "date": "2026-10-06",
+      "source": "Bird-Watchers.com",
+      "url": "https://bird-watchers.com/2026/10/06/eurobirdwatch-2026-records-48-million-birds/",
+      "title": {
+        "en": "EuroBirdwatch 2026: Finland counted the most birds",
+        "fi": "EuroBirdwatch 2026: Suomessa laskettiin eniten lintuja",
+        "sv": "EuroBirdwatch 2026: Finland räknade flest fåglar"
+      },
+      "summary": {
+        "en": "On 3–4 October, more than 23,000 people at 927 events across Europe and Central Asia counted about 4.8 million migrating birds. Finland had the highest national total, about 1.6 million birds. Barnacle geese, starlings and chaffinches were counted most often. The figures are an initial tally.",
+        "fi": "Lokakuun 3.–4. päivänä yli 23 000 ihmistä laski 927 tapahtumassa Euroopassa ja Keski-Aasiassa noin 4,8 miljoonaa muuttolintua. Suomen kokonaismäärä, noin 1,6 miljoonaa lintua, oli maista suurin. Eniten nähtiin valkoposkihanhia, kottaraisia ja peippoja. Luvut ovat alustavia.",
+        "sv": "Den 3–4 oktober räknade över 23 000 personer vid 927 evenemang i Europa och Centralasien omkring 4,8 miljoner flyttfåglar. Finland hade den största nationella summan, cirka 1,6 miljoner fåglar. Flest sågs vitkindade gäss, starar och bofinkar. Siffrorna är preliminära."
+      }
+    },
+    {
+      "id": "2026-09-23-euronatur-award",
+      "date": "2026-09-23",
+      "source": "EuroNatur",
+      "url": "https://www.euronatur.org/en/what-we-do/news/the-2026-euronatur-award-recognises-efforts-against-illegal-bird-hunting",
+      "title": {
+        "en": "EuroNatur Award 2026 honours the fight against illegal bird hunting",
+        "fi": "EuroNatur-palkinto 2026 laittoman lintujen pyynnin vastaiselle työlle",
+        "sv": "EuroNatur-priset 2026 hedrar kampen mot illegal fågeljakt"
+      },
+      "summary": {
+        "en": "The conservation foundation EuroNatur gives its 2026 award to the Committee Against Bird Slaughter (CABS), a Bonn-based group that has worked for decades against illegal hunting and trapping on Europe's migration routes, from Cyprus and Malta to Italy. The award is presented on 15 October on the island of Mainau in Lake Constance.",
+        "fi": "Luonnonsuojelusäätiö EuroNatur myöntää vuoden 2026 palkintonsa bonnilaiselle Committee Against Bird Slaughter -järjestölle (CABS), joka on vuosikymmeniä toiminut laitonta lintujen metsästystä ja pyyntiä vastaan Euroopan muuttoreiteillä Kyprokselta ja Maltalta Italiaan. Palkinto luovutetaan 15. lokakuuta Mainaun saarella Bodenjärvellä.",
+        "sv": "Naturskyddsstiftelsen EuroNatur ger 2026 års pris till Committee Against Bird Slaughter (CABS) i Bonn, som i årtionden har arbetat mot illegal jakt och fångst av fåglar längs Europas flyttvägar, från Cypern och Malta till Italien. Priset delas ut den 15 oktober på ön Mainau i Bodensjön."
+      }
+    }
+  ]
+}

@@ -1,0 +1,1346 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>BongaaBirds</title>
+<!-- fonts:start -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<!-- fonts:end -->
+<style>
+:root{
+  --bg:#F4F5F1;
+  --surface:#FDFDFB;
+  --panel:#E4EEF6;
+  --field:#FFFFFF;
+  --ink:#0F2F44;
+  --muted:#46596A;
+  --line:#D5DEE5;
+  --brand:#095C8E;
+  --brand-strong:#074A73;
+  --brand-ink:#FFFFFF;
+  --signal:#127F78;
+  --ok:#1C6B3C;
+  --ok-bg:#E3F3E8;
+  --err:#9E2F28;
+  --err-bg:#FBE7E5;
+  --note:#5E4600;
+  --note-bg:#FFF3D6;
+  --header-bg:rgba(244,245,241,.92);
+  --shadow:0 1px 2px rgba(15,47,68,.06),0 12px 32px rgba(15,47,68,.10);
+  --band:#095C8E;
+  --band-ink:#FFFFFF;
+  --band-muted:#D3E6F3;
+  --band-line:rgba(255,255,255,.24);
+  --display-bg:#0D1F3A;
+  --display-ink:#EAF6FF;
+  --display-muted:#9FB6CC;
+  --display-signal:#5EE0D2;
+  --display-grid:rgba(158,214,236,.18);
+  --radius:16px;
+  --font-display:"Montserrat","Segoe UI",Arial,sans-serif;
+  --font-body:"Nunito Sans","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1A26; --surface:#102536; --panel:#14324A; --field:#0B1A26;
+    --ink:#E9F0F5; --muted:#A7BAC8; --line:#244257;
+    --brand:#62B6E8; --brand-strong:#8FCDF2; --brand-ink:#06243A; --signal:#5EE0D2;
+    --ok:#86D9A2; --ok-bg:#12321F; --err:#FF9E94; --err-bg:#3A1714; --note:#F3DDA0; --note-bg:#33280C;
+    --header-bg:rgba(11,26,38,.9);
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1A26; --surface:#102536; --panel:#14324A; --field:#0B1A26;
+  --ink:#E9F0F5; --muted:#A7BAC8; --line:#244257;
+  --brand:#62B6E8; --brand-strong:#8FCDF2; --brand-ink:#06243A; --signal:#5EE0D2;
+  --ok:#86D9A2; --ok-bg:#12321F; --err:#FF9E94; --err-bg:#3A1714; --note:#F3DDA0; --note-bg:#33280C;
+  --header-bg:rgba(11,26,38,.9);
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--brand);text-underline-offset:.18em}
+a:hover{color:var(--brand-strong)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);margin:0;text-wrap:balance}
+p,ul,ol,dl,dd,figure{margin:0}
+p{text-wrap:pretty}
+[id]{scroll-margin-top:84px}
+
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.skip{position:absolute;left:16px;top:-80px;z-index:50;background:var(--brand);color:var(--brand-ink);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px;color:var(--brand-ink)}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--header-bg);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.header-row{position:relative;display:flex;align-items:center;gap:10px;min-height:64px}
+.brand{display:inline-flex;align-items:center;gap:10px;margin-right:auto;color:var(--ink);text-decoration:none;font:800 1.15rem/1 var(--font-display);letter-spacing:-.01em;white-space:nowrap}
+.brand:hover{color:var(--ink)}
+.mark{width:32px;height:32px;flex:none}
+.mark .disc{fill:var(--display-bg)}
+.mark .ring{fill:none;stroke:var(--display-signal);stroke-width:2.2;stroke-linecap:round}
+.mark .bars rect{fill:var(--display-ink)}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.94rem;padding:8px 9px;border-radius:8px;white-space:nowrap}
+.nav a:hover{background:var(--panel);color:var(--ink)}
+.lang-switch{display:inline-flex;gap:2px;padding:2px;border:1.5px solid var(--line);border-radius:999px;flex:none}
+.lang-switch button{border:0;background:transparent;color:var(--muted);font:700 .76rem/1 var(--font-display);letter-spacing:.06em;padding:8px 9px;border-radius:999px;cursor:pointer}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.menu-btn{display:none;align-items:center;justify-content:center;width:42px;height:42px;flex:none;border:1.5px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.menu-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+@media (max-width:1179px){
+  .menu-btn{display:inline-flex}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px clamp(16px,4vw,40px) 16px;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .nav.open{display:flex}
+  .nav a{padding:12px 8px;font-size:1.05rem;border-radius:8px}
+}
+@media (max-width:400px){
+  .brand{font-size:1.02rem;gap:8px}
+  .mark{width:28px;height:28px}
+  .lang-switch button{padding:8px 7px}
+}
+
+/* ---------- shared ---------- */
+.section{padding-block:clamp(56px,8vw,104px)}
+.section.rule{border-top:1px solid var(--line)}
+.band{background:var(--panel)}
+.section-head{display:grid;gap:12px;max-width:46rem;margin-bottom:clamp(28px,4vw,48px)}
+.kicker{font:700 .8rem/1.3 var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+h2{font-weight:800;font-size:clamp(1.75rem,1.25rem + 1.8vw,2.6rem);line-height:1.12;letter-spacing:-.02em}
+.body-lead{font-size:1.12rem;color:var(--muted)}
+.fine{font-size:.9rem;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border:2px solid transparent;border-radius:999px;font:700 1rem/1.2 var(--font-display);text-decoration:none;text-align:center;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.btn-primary{background:var(--brand);color:var(--brand-ink)}
+.btn-primary:hover{background:var(--brand-strong);color:var(--brand-ink)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--ink)}
+.btn-outline{background:transparent;border-color:var(--brand);color:var(--brand)}
+.btn-outline:hover{background:var(--brand);color:var(--brand-ink)}
+.btn[disabled]{opacity:.6;cursor:progress}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(40px,6vw,88px) clamp(56px,8vw,104px)}
+.hero-grid{display:grid;gap:clamp(32px,5vw,64px);align-items:center}
+.hero-copy{min-width:0}
+.eyebrow{display:flex;align-items:center;gap:10px;font:700 .82rem/1.35 var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.eyebrow::before{content:"";width:28px;height:2px;flex:none;background:currentColor}
+h1{margin-top:18px;font-weight:800;font-size:clamp(2.3rem,1.45rem + 3.4vw,3.9rem);line-height:1.04;letter-spacing:-.025em}
+.lead{margin-top:20px;max-width:36em;font-size:clamp(1.1rem,1rem + .4vw,1.3rem);color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-note{margin-top:18px;font-size:.95rem;color:var(--muted)}
+.hero-media{position:relative;min-width:0}
+.hero-media img{width:100%;aspect-ratio:1600/1195;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
+.detect{position:absolute;left:-36px;bottom:-36px;width:min(264px,74%);display:grid;gap:6px;padding:14px 16px 12px;border-radius:14px;background:var(--display-bg);color:var(--display-ink);box-shadow:0 14px 36px rgba(5,20,40,.38)}
+.detect-label{display:flex;align-items:center;gap:8px;font:700 .68rem/1.2 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:var(--display-signal)}
+.detect-label::before{content:"";width:8px;height:8px;flex:none;border-radius:50%;background:var(--display-signal);box-shadow:0 0 0 4px rgba(94,224,210,.18)}
+.detect-species{font:700 1.08rem/1.25 var(--font-display)}
+.detect-species i{font:italic 400 .9rem/1.2 var(--font-body);color:var(--display-muted)}
+.detect-meta{font-size:.8rem;color:var(--display-muted);font-variant-numeric:tabular-nums}
+.sono{display:block;width:100%;height:auto}
+.sono-grid line{stroke:var(--display-grid);stroke-width:1}
+.sono-axis text{fill:var(--display-muted);font:600 8px var(--font-body)}
+.sono-window{fill:none;stroke:var(--display-signal);stroke-opacity:.5;stroke-dasharray:3 3}
+.sono-notes path{fill:none;stroke:var(--display-signal);stroke-width:5;stroke-linecap:round}
+@media (prefers-reduced-motion:no-preference){
+  .detect-label::before{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 7px rgba(94,224,210,0)}}
+}
+@media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
+@media (max-width:959px){.detect{position:relative;left:auto;bottom:auto;width:min(280px,86%);margin:-56px 14px 0 auto}}
+
+/* ---------- how ---------- */
+.steps{list-style:none;padding:0;display:grid;gap:clamp(24px,3vw,36px)}
+.step{display:grid;gap:12px;align-content:start;padding-top:20px;border-top:2px solid var(--brand);min-width:0}
+.step-top{display:flex;align-items:center;justify-content:space-between}
+.step-num{font:800 .9rem/1 var(--font-display);letter-spacing:.08em;color:var(--brand);font-variant-numeric:tabular-nums}
+.step-top svg{width:34px;height:34px;fill:none;stroke:var(--brand);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.step h3{font-size:1.3rem}
+.step p{color:var(--muted)}
+.section-note{margin-top:36px;font-size:.95rem;color:var(--muted)}
+@media (min-width:760px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---------- station ---------- */
+.station-grid{display:grid;gap:clamp(32px,5vw,64px);align-items:center}
+.figure{display:grid;gap:10px;min-width:0}
+.figure img{width:100%;aspect-ratio:1600/916;object-fit:cover;border-radius:var(--radius)}
+.figure figcaption{font-size:.85rem;color:var(--muted)}
+.station-copy{display:grid;gap:16px;min-width:0}
+.specs{display:grid;margin-top:8px}
+.specs div{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:16px;padding-block:12px;border-top:1px solid var(--line)}
+.specs div:last-child{border-bottom:1px solid var(--line)}
+.specs dt{font:700 .92rem/1.55 var(--font-display)}
+.specs dd{color:var(--muted)}
+@media (min-width:960px){
+  .station-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+  .figure img{aspect-ratio:1/1.1;object-position:50% 50%}
+}
+@media (max-width:520px){.specs div{grid-template-columns:minmax(0,1fr);gap:2px}}
+
+/* ---------- offers + order ---------- */
+.offers{display:grid;gap:20px}
+.offer{display:flex;flex-direction:column;gap:14px;min-width:0;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.offer-tag{font:700 .75rem/1.35 var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.offer h3{font-size:1.35rem}
+.price{display:grid;align-content:start;gap:2px}
+.price-main{font:800 1.9rem/1.15 var(--font-display);font-variant-numeric:tabular-nums}
+.price-main.tba{font-size:1.25rem;line-height:1.3}
+.price-sub{font-weight:600;font-size:.95rem;color:var(--muted)}
+.ticks{list-style:none;padding:0;display:grid;gap:8px}
+.ticks li{position:relative;padding-left:26px}
+.ticks li::before{content:"";position:absolute;left:2px;top:.42em;width:12px;height:7px;border-left:2.5px solid var(--brand);border-bottom:2.5px solid var(--brand);transform:rotate(-45deg)}
+.offer .btn{margin-top:auto;align-self:flex-start}
+.offers-note{margin-top:16px}
+@media (min-width:880px){
+  .offers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .price{min-height:4.6rem}
+  @supports (grid-template-rows:subgrid){
+    .offers{row-gap:0}
+    .offer{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:14px}
+    .price{min-height:0}
+    .offer .btn{margin-top:8px;align-self:end;justify-self:start}
+  }
+}
+
+.order{display:grid;gap:clamp(28px,4vw,56px);margin-top:clamp(48px,7vw,88px)}
+.order-intro{display:grid;gap:16px;align-content:start;min-width:0}
+.order-intro h3{font-size:clamp(1.45rem,1.2rem + .9vw,1.9rem);line-height:1.2}
+.order-intro h4{margin-top:8px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.next{list-style:none;padding:0;counter-reset:n;display:grid;gap:14px}
+.next li{counter-increment:n;display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start}
+.next li::before{content:counter(n);width:32px;height:32px;border-radius:50%;background:var(--panel);color:var(--brand);font:800 .9rem/32px var(--font-display);text-align:center}
+@media (min-width:960px){.order{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
+
+/* ---------- forms ---------- */
+.form-card{min-width:0;padding:clamp(20px,3vw,32px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.form-grid{display:grid;gap:18px 20px}
+.field{display:grid;gap:6px;align-content:start;min-width:0}
+.field label,legend{font-weight:700;font-size:.95rem}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=number],select,textarea{width:100%;min-height:48px;padding:11px 12px;font:inherit;font-size:1rem;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:10px}
+textarea{min-height:112px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.8}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 28%,transparent)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;cursor:pointer}
+.check input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--brand)}
+fieldset{display:grid;gap:10px;min-width:0;margin:0;padding:0;border:0}
+legend{padding:0;margin-bottom:6px}
+.interests{display:grid;gap:10px}
+.form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.form-status{padding:12px 14px;border-radius:10px;font-weight:600;font-size:.95rem}
+.form-status[data-kind=ok]{background:var(--ok-bg);color:var(--ok)}
+.form-status[data-kind=error]{background:var(--err-bg);color:var(--err)}
+.form-status[data-kind=note]{background:var(--note-bg);color:var(--note)}
+.form-status[data-kind=busy]{background:var(--panel);color:var(--ink)}
+.hp{position:absolute!important;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media (min-width:640px){
+  .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .span-2{grid-column:1/-1}
+  .interests{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---------- news ---------- */
+.news-head{display:grid;gap:20px;margin-bottom:clamp(24px,4vw,40px)}
+.news-head .section-head{margin-bottom:0}
+.news-intro{display:grid;gap:10px;align-content:end;color:var(--muted)}
+.news-meta{font-weight:700;font-size:.9rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.news-list{list-style:none;padding:0;display:grid}
+.news-item{display:grid;gap:8px 32px;padding-block:24px;border-top:1px solid var(--line)}
+.news-item:last-child{border-bottom:1px solid var(--line)}
+.news-date{font:700 .9rem/1.6 var(--font-display);color:var(--muted);font-variant-numeric:tabular-nums}
+.news-body{display:grid;gap:8px;max-width:46rem;min-width:0}
+.news-source{font:700 .75rem/1.35 var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.news-title{font-size:1.25rem;line-height:1.3}
+.news-summary{color:var(--muted)}
+.news-link{justify-self:start;font-weight:700}
+.news-link::after{content:" \2197"}
+.news-note{padding-block:24px;border-top:1px solid var(--line);color:var(--muted)}
+#news-more{margin-top:24px}
+@media (min-width:760px){.news-item{grid-template-columns:11rem minmax(0,1fr)}}
+@media (min-width:960px){.news-head{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;gap:56px}}
+
+/* ---------- articles ---------- */
+.articles{display:grid;gap:16px}
+.article{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.article summary{position:relative;display:grid;gap:8px;padding:22px 64px 22px 24px;list-style:none;cursor:pointer;border-radius:var(--radius)}
+.article summary::-webkit-details-marker{display:none}
+.article summary::after{content:"";position:absolute;right:26px;top:30px;width:11px;height:11px;border-right:2.5px solid var(--brand);border-bottom:2.5px solid var(--brand);transform:rotate(45deg);transition:transform .2s}
+.article[open] summary::after{top:35px;transform:rotate(-135deg)}
+.article-tag{font:700 .75rem/1.35 var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.article-title{font-size:clamp(1.2rem,1.1rem + .5vw,1.45rem);line-height:1.25}
+.article-lead{color:var(--muted)}
+.article-body{display:grid;gap:14px;max-width:44rem;padding:4px 24px 28px}
+.species{display:grid;gap:16px}
+.species div{display:grid;gap:2px;padding-left:14px;border-left:2px solid var(--brand)}
+.species dt{font:700 1.02rem/1.35 var(--font-display)}
+.species dt i{font:italic 400 .92rem/1.3 var(--font-body);color:var(--muted)}
+.species dd{color:var(--muted)}
+.tip{padding:14px 16px;border-radius:12px;background:var(--panel)}
+.source{font-size:.88rem;color:var(--muted)}
+
+/* ---------- community + privacy ---------- */
+.community-grid{display:grid;gap:clamp(28px,4vw,56px);align-items:start}
+.community-copy{display:grid;gap:16px;min-width:0}
+@media (min-width:960px){.community-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.privacy-grid{display:grid;gap:clamp(24px,3vw,36px)}
+.privacy-item{display:grid;gap:8px;align-content:start;padding-top:18px;border-top:2px solid var(--line);min-width:0}
+.privacy-item h3{font-size:1.15rem}
+.privacy-item p{color:var(--muted)}
+@media (min-width:720px){.privacy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- footer ---------- */
+.site-footer{padding-block:clamp(44px,6vw,72px) 28px;background:var(--band);color:var(--band-ink)}
+.site-footer p{color:var(--band-muted)}
+.site-footer a{color:var(--band-ink)}
+.site-footer :focus-visible{outline-color:var(--band-ink)}
+.footer-grid{display:grid;gap:36px}
+.footer-brand{display:grid;gap:14px;align-content:start;max-width:30rem}
+.footer-logo{width:180px;margin-left:-4px}
+.footer-quip{font-style:italic}
+.footer-cols{display:grid;gap:32px}
+.footer-h{font:700 .78rem/1.3 var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:var(--band-ink)!important}
+.footer-nav{display:grid;gap:8px;align-content:start}
+.footer-nav a{font-weight:700;text-decoration:none}
+.footer-nav a:hover{text-decoration:underline}
+.footer-contact{display:grid;gap:8px;align-content:start}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:40px;padding-top:20px;border-top:1px solid var(--band-line);font-size:.88rem}
+@media (min-width:860px){
+  .footer-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  .footer-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="disc" cx="16" cy="16" r="15.5"/><path class="ring" d="M16 4.5A11.5 11.5 0 1 1 4.5 16"/><g class="bars"><rect x="9.6" y="13.6" width="2.4" height="4.8" rx="1.2"/><rect x="13.3" y="9.8" width="2.4" height="12.4" rx="1.2"/><rect x="17" y="11.8" width="2.4" height="8.4" rx="1.2"/><rect x="20.7" y="14.2" width="2.4" height="3.6" rx="1.2"/></g></svg>
+      <span>BongaaBirds</span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Main" data-i18n-aria="nav.aria">
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#station" data-i18n="nav.station">Station</a>
+      <a href="#preorder" data-i18n="nav.preorder">Pre-order</a>
+      <a href="#news" data-i18n="nav.news">News</a>
+      <a href="#articles" data-i18n="nav.articles">Articles</a>
+      <a href="#community" data-i18n="nav.community">Community</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="lang.aria">
+      <button type="button" data-set-lang="en" lang="en" title="English" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="fi" lang="fi" title="Suomi" aria-pressed="false">FI</button>
+      <button type="button" data-set-lang="sv" lang="sv" title="Svenska" aria-pressed="false">SV</button>
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-i18n-aria="menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Bird listening stations built by pupils</p>
+      <h1 data-i18n="hero.title">Hear which birds visit your school</h1>
+      <p class="lead" data-i18n="hero.lead">Pupils build a small listening station, place it outdoors and follow the birds around their school on an open map. AI recognises the birds on the station itself and filters out human speech.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#order" data-i18n="cta.preorder">Pre-order a station</a>
+        <a class="btn btn-ghost" href="#community" data-i18n="cta.join">Join the community</a>
+      </div>
+      <p class="hero-note" data-i18n="hero.note">Pre-ordering is free and non-binding. First pilots in spring 2027.</p>
+    </div>
+    <figure class="hero-media">
+      <img src="images/station-birdhouse.jpg" width="1600" height="1195" fetchpriority="high" alt="A BongaaBirds listening station in a wooden birdhouse-style case on a school wall" data-i18n-alt="hero.alt">
+      <div class="detect">
+        <p class="detect-label" data-i18n="det.label">Example detection</p>
+        <p class="detect-species"><span data-i18n="det.species">Great tit</span> <i lang="la">Parus major</i></p>
+        <svg class="sono" viewBox="0 0 248 78" role="img" aria-label="Sonogram of a great tit's two-note song, frequencies 2–8 kHz" data-i18n-aria="det.aria">
+          <g class="sono-grid"><line x1="30" y1="8" x2="246" y2="8"/><line x1="30" y1="26" x2="246" y2="26"/><line x1="30" y1="44" x2="246" y2="44"/><line x1="30" y1="62" x2="246" y2="62"/></g>
+          <g class="sono-axis"><text x="24" y="11" text-anchor="end">8</text><text x="24" y="29" text-anchor="end">6</text><text x="24" y="47" text-anchor="end">4</text><text x="24" y="65" text-anchor="end">2</text><text x="2" y="76">kHz</text><text x="30" y="76">0 s</text><text x="246" y="76" text-anchor="end" data-i18n="det.t">1.2 s</text></g>
+          <rect class="sono-window" x="38" y="3" width="188" height="64" rx="6"/>
+          <g class="sono-notes"><path d="M48 16L58 21"/><path d="M66 38L84 43"/><path d="M114 16L124 21"/><path d="M132 38L150 43"/><path d="M180 16L190 21"/><path d="M198 38L216 43"/></g>
+        </svg>
+        <p class="detect-meta" data-i18n="det.meta">06:42 · confidence 94%</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="section band" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="how.kicker">How it works</p>
+      <h2 data-i18n="how.title">From a school wall to an open bird map</h2>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-top"><span class="step-num">01</span><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="12" y="4" width="8" height="15" rx="4"/><path d="M7.5 15.5a8.5 8.5 0 0 0 17 0M16 24v4M11.5 28h9"/></svg></div>
+        <h3 data-i18n="step1.title">Listen</h3>
+        <p data-i18n="step1.text">Pupils build the station and mount it on a wall, a tree or a tripod. It listens day and night through the whole migration season.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="step-num">02</span><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="7" width="18" height="18" rx="3"/><path d="M10.5 16h2.5l1.6-4.5 2.8 9 1.6-4.5h2.5"/><path d="M12 3v4M16 3v4M20 3v4M12 25v4M16 25v4M20 25v4M3 12h4M3 16h4M3 20h4M25 12h4M25 16h4M25 20h4"/></svg></div>
+        <h3 data-i18n="step2.title">Recognise</h3>
+        <p data-i18n="step2.text">AI on the station recognises bird calls. Human speech is filtered out on the station itself, so it never leaves it.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="step-num">03</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29s9-8.4 9-15.5a9 9 0 0 0-18 0C7 20.6 16 29 16 29z"/><path d="M12.2 13.6l2.6 2.6 5-5.2"/></svg></div>
+        <h3 data-i18n="step3.title">Share and check</h3>
+        <p data-i18n="step3.text">Detections and short bird clips are stored on our own server and shown on the map. Pupils listen to the clips and confirm or correct the AI.</p>
+      </li>
+    </ol>
+    <p class="section-note" data-i18n="how.note">The map and app open with the first pilots in 2027.</p>
+  </div>
+</section>
+
+<section class="section" id="station">
+  <div class="wrap station-grid">
+    <figure class="figure">
+      <img src="images/station-forest.jpg" width="1600" height="916" loading="lazy" alt="The BongaaBirds station on a tripod on a mossy rock in a forest" data-i18n-alt="st.alt">
+      <figcaption data-i18n="st.caption">Design renders of the planned station</figcaption>
+    </figure>
+    <div class="station-copy">
+      <p class="kicker" data-i18n="st.kicker">The station</p>
+      <h2 data-i18n="st.title">Small, sturdy and built in class</h2>
+      <p class="body-lead" data-i18n="st.lead">Building the station is part of the lesson: pupils assemble the electronics, load the software and test the microphone before the station goes outdoors.</p>
+      <dl class="specs">
+        <div><dt data-i18n="spec.cpu.k">Processor</dt><dd data-i18n="spec.cpu.v">ESP32-S3 class microcontroller that recognises birds on the station itself</dd></div>
+        <div><dt data-i18n="spec.mic.k">Microphone</dt><dd data-i18n="spec.mic.v">Digital MEMS microphone. Microphone only: no camera.</dd></div>
+        <div><dt data-i18n="spec.gps.k">Time and place</dt><dd data-i18n="spec.gps.v">GPS gives the location and an exact shared clock, so neighbouring stations can locate a calling bird.</dd></div>
+        <div><dt data-i18n="spec.power.k">Power</dt><dd data-i18n="spec.power.v">Battery for one migration season, about 3 months; solar panel as an option</dd></div>
+        <div><dt data-i18n="spec.mount.k">Mounting</dt><dd data-i18n="spec.mount.v">On a wall in a wooden birdhouse-style case, on a tree with a strap, or on a tripod</dd></div>
+        <div><dt data-i18n="spec.data.k">Data</dt><dd data-i18n="spec.data.v">Detections and short, speech-free bird clips go to FEONA's own server</dd></div>
+      </dl>
+      <p class="fine" data-i18n="st.note">Planned specification for the 2027 pilots; details may change.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section rule" id="preorder">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="of.kicker">Pre-order</p>
+      <h2 data-i18n="of.title">Choose what fits you</h2>
+    </div>
+    <div class="offers">
+      <article class="offer">
+        <p class="offer-tag" data-i18n="of1.tag">For schools</p>
+        <h3 data-i18n="of1.title">Class package</h3>
+        <p class="price"><span class="price-main" data-i18n="of1.price">€750</span><span class="price-sub" data-i18n="of1.sub">+ €250 a year</span></p>
+        <ul class="ticks">
+          <li data-i18n="of1.l1">5 station kits for pupils to build</li>
+          <li data-i18n="of1.l2">Teacher guide and lesson plans</li>
+          <li data-i18n="of1.l3">The map and clip checking for the whole class</li>
+        </ul>
+        <button class="btn btn-outline" type="button" data-product="Class package (5 kits)" data-i18n="of.choose">Choose</button>
+      </article>
+      <article class="offer">
+        <p class="offer-tag" data-i18n="of2.tag">For municipalities and researchers</p>
+        <h3 data-i18n="of2.title">Ready-made stations</h3>
+        <p class="price"><span class="price-main" data-i18n="of2.price">€400 per station</span><span class="price-sub" data-i18n="of2.sub">+ €150 a year per station</span></p>
+        <ul class="ticks">
+          <li data-i18n="of2.l1">Assembled and tested stations</li>
+          <li data-i18n="of2.l2">Data on the map and through an API</li>
+          <li data-i18n="of2.l3">Nature and restoration reports from €2,000 a year</li>
+        </ul>
+        <button class="btn btn-outline" type="button" data-product="Ready-made stations" data-i18n="of.choose">Choose</button>
+      </article>
+      <article class="offer">
+        <p class="offer-tag" data-i18n="of3.tag">For bird lovers</p>
+        <h3 data-i18n="of3.title">Home station</h3>
+        <p class="price"><span class="price-main tba" data-i18n="of3.price">Price to be announced</span></p>
+        <ul class="ticks">
+          <li data-i18n="of3.l1">For a garden, a summer cottage or a balcony</li>
+          <li data-i18n="of3.l2">Your detections on the shared map</li>
+          <li data-i18n="of3.l3">Join the waiting list now</li>
+        </ul>
+        <button class="btn btn-outline" type="button" data-product="Home station" data-i18n="of.choose">Choose</button>
+      </article>
+    </div>
+    <p class="fine offers-note" data-i18n="of.note">Indicative prices, excluding VAT. We confirm the final price and delivery time before anything is invoiced.</p>
+
+    <div class="order" id="order">
+      <div class="order-intro">
+        <h3 data-i18n="ord.title">Pre-order a station</h3>
+        <p class="body-lead" data-i18n="ord.lead">Tell us what you need. We will contact you before the 2027 pilot season.</p>
+        <h4 data-i18n="ord.next">What happens next</h4>
+        <ol class="next">
+          <li data-i18n="ord.n1">We confirm your pre-order by email.</li>
+          <li data-i18n="ord.n2">We agree on the price and timing with you before anything is invoiced.</li>
+          <li data-i18n="ord.n3">The first pilots start in spring 2027, and deliveries follow.</li>
+        </ol>
+      </div>
+      <form class="form-card" id="preorder-form" data-kind="preorder">
+        <div class="form-grid">
+          <div class="field">
+            <label for="po-name" data-i18n="f.name">Name</label>
+            <input id="po-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="po-email" data-i18n="f.email">Email</label>
+            <input id="po-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="po-type" data-i18n="f.type">Who is ordering?</label>
+            <select id="po-type" name="customer_type">
+              <option value="School" data-i18n="f.type.school">School</option>
+              <option value="Municipality or city" data-i18n="f.type.city">Municipality or city</option>
+              <option value="Research or nature organisation" data-i18n="f.type.research">Research or nature organisation</option>
+              <option value="Company" data-i18n="f.type.company">Company</option>
+              <option value="Private person" data-i18n="f.type.private">Private person</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="po-org"><span data-i18n="f.org">School or organisation</span> <span class="opt" data-i18n="f.opt">(optional)</span></label>
+            <input id="po-org" name="organisation" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="po-product" data-i18n="f.product">Product</label>
+            <select id="po-product" name="product">
+              <option value="Class package (5 kits)" data-i18n="f.p.class">Class package (5 kits)</option>
+              <option value="Ready-made stations" data-i18n="f.p.ready">Ready-made stations</option>
+              <option value="Home station" data-i18n="f.p.home">Home station</option>
+              <option value="Not sure yet" data-i18n="f.p.unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="po-qty" data-i18n="f.qty">How many packages or stations?</label>
+            <input id="po-qty" name="quantity" type="number" min="1" max="999" step="1" value="1" inputmode="numeric" required>
+          </div>
+          <div class="field">
+            <label for="po-country" data-i18n="f.country">Country</label>
+            <select id="po-country" name="country">
+              <option value="Finland" data-i18n="f.c.fi">Finland</option>
+              <option value="Sweden" data-i18n="f.c.se">Sweden</option>
+              <option value="Estonia" data-i18n="f.c.ee">Estonia</option>
+              <option value="Other country" data-i18n="f.c.other">Other country</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="po-start" data-i18n="f.start">When would you like to start?</label>
+            <select id="po-start" name="start">
+              <option value="Spring 2027" data-i18n="f.s.spring">Spring 2027</option>
+              <option value="Autumn 2027" data-i18n="f.s.autumn">Autumn 2027</option>
+              <option value="2028 or later" data-i18n="f.s.later">2028 or later</option>
+              <option value="Not sure yet" data-i18n="f.p.unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field span-2">
+            <label for="po-msg"><span data-i18n="f.msg">Message</span> <span class="opt" data-i18n="f.opt">(optional)</span></label>
+            <textarea id="po-msg" name="message" rows="4" placeholder="For example: where the station would go, or questions about the package" data-i18n-ph="f.msg.ph"></textarea>
+          </div>
+          <label class="check span-2"><input id="po-consent" name="consent" type="checkbox" value="yes" required><span data-i18n-html="f.consent">I agree that FEONA Oy stores these details to handle my pre-order and contact me about it (<a href="#privacy">privacy</a>).</span></label>
+          <label class="check span-2"><input id="po-news" name="newsletter" type="checkbox" value="yes"><span data-i18n="f.news">Also send me BongaaBirds news, about once a month</span></label>
+          <div class="hp" aria-hidden="true"><label for="po-hp" data-i18n="f.hp">Leave this field empty</label><input id="po-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <div class="form-actions span-2"><button class="btn btn-primary" type="submit" data-i18n="f.submit">Send pre-order</button></div>
+          <p class="form-status span-2" role="status" hidden></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section rule" id="news">
+  <div class="wrap">
+    <div class="news-head">
+      <div class="section-head">
+        <p class="kicker" data-i18n="news.kicker">Bird news</p>
+        <h2 data-i18n="news.title">What's happening in Finland and Europe</h2>
+      </div>
+      <div class="news-intro">
+        <p data-i18n="news.lead">We collect bird news from Finnish and European sources on the 1st and 15th of each month. The summaries are our own; follow the link to read the original.</p>
+        <p class="news-meta" id="news-updated"></p>
+      </div>
+    </div>
+    <ol class="news-list" id="news-list"></ol>
+    <button class="btn btn-outline" type="button" id="news-more" data-i18n="news.more" hidden>Show older news</button>
+  </div>
+</section>
+
+<section class="section rule" id="articles">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="art.kicker">Read</p>
+      <h2 data-i18n="art.title">Articles about birds</h2>
+    </div>
+    <div class="articles">
+
+      <details class="article">
+        <summary>
+          <span class="article-tag" data-i18n="art1.tag">Species</span>
+          <h3 class="article-title"><span data-lang="en">Five birds you can hear at almost any Finnish school</span><span data-lang="fi" hidden>Viisi lintua, jotka kuulee lähes jokaisella koululla</span><span data-lang="sv" hidden>Fem fåglar som hörs vid nästan varje skola i Finland</span></h3>
+          <span class="article-lead"><span data-lang="en">You don't need a forest to start listening. These five are common around school yards all over Finland.</span><span data-lang="fi" hidden>Kuuntelemisen voi aloittaa ilman metsääkin. Nämä viisi ovat yleisiä koulujen pihoilla kaikkialla Suomessa.</span><span data-lang="sv" hidden>Man behöver ingen skog för att börja lyssna. De här fem är vanliga kring skolgårdar i hela Finland.</span></span>
+        </summary>
+        <div class="article-body" data-lang="en">
+          <dl class="species">
+            <div><dt>Great tit <i lang="la">Parus major</i></dt><dd>Stays in Finland all year and visits feeders in winter. Its bright two-note song, often written ‘teacher, teacher’, is one of the first signs of spring, sometimes as early as February.</dd></div>
+            <div><dt>Chaffinch <i lang="la">Fringilla coelebs</i></dt><dd>Returns in March and April and is among the most common breeding birds in Finland. Its song is a quick, cheerful run of notes that ends with a flourish.</dd></div>
+            <div><dt>Willow warbler <i lang="la">Phylloscopus trochilus</i></dt><dd>Arrives in late April and May after wintering in Africa south of the Sahara. Its soft, falling song sounds a little wistful and often comes from the birches around the yard.</dd></div>
+            <div><dt>Blackbird <i lang="la">Turdus merula</i></dt><dd>Sings slow, fluted phrases from rooftops and treetops at dusk in spring. In southern Finland many blackbirds now spend the winter in towns.</dd></div>
+            <div><dt>Hooded crow <i lang="la">Corvus cornix</i></dt><dd>Grey and black, clever and loud. Its hoarse ‘kraa’ is heard all year, and crows keep a close eye on school yards for leftover food.</dd></div>
+          </dl>
+          <p class="tip">Try this with a class: listen for one minute in the morning and write down every sound you hear. Later, compare your list with what the station heard.</p>
+        </div>
+        <div class="article-body" data-lang="fi" hidden>
+          <dl class="species">
+            <div><dt>Talitiainen <i lang="la">Parus major</i></dt><dd>Talvehtii Suomessa ja käy talvisin ruokintapaikoilla. Sen kirkas, kaksisävelinen ”ti-tyy” on yksi kevään ensimmäisistä merkeistä, joskus jo helmikuussa.</dd></div>
+            <div><dt>Peippo <i lang="la">Fringilla coelebs</i></dt><dd>Palaa maalis–huhtikuussa ja on Suomen yleisimpiä pesimälintuja. Sen laulu on nopea, iloinen sävelsarja, joka päättyy koukeroon.</dd></div>
+            <div><dt>Pajulintu <i lang="la">Phylloscopus trochilus</i></dt><dd>Saapuu huhti–toukokuussa talvehdittuaan Saharan eteläpuolisessa Afrikassa. Sen pehmeä, laskeva laulu kuulostaa hieman haikealta ja kantautuu usein pihan koivuista.</dd></div>
+            <div><dt>Mustarastas <i lang="la">Turdus merula</i></dt><dd>Laulaa keväisin iltahämärässä katoilta ja puiden latvoista hitaita, huilumaisia säkeitä. Etelä-Suomessa moni mustarastas jää nykyään talveksi kaupunkeihin.</dd></div>
+            <div><dt>Varis <i lang="la">Corvus cornix</i></dt><dd>Harmaamusta, nokkela ja äänekäs. Sen käheä ”kraa” kuuluu ympäri vuoden, ja varikset pitävät koulujen pihoja tarkasti silmällä ruoantähteiden varalta.</dd></div>
+          </dl>
+          <p class="tip">Kokeilkaa luokan kanssa: kuunnelkaa aamulla minuutin ajan ja kirjoittakaa ylös jokainen kuulemanne ääni. Verratkaa listaa myöhemmin siihen, mitä asema kuuli.</p>
+        </div>
+        <div class="article-body" data-lang="sv" hidden>
+          <dl class="species">
+            <div><dt>Talgoxe <i lang="la">Parus major</i></dt><dd>Stannar i Finland året runt och besöker fågelbord på vintern. Den klara, tvåtoniga sången är ett av vårens första tecken, ibland redan i februari.</dd></div>
+            <div><dt>Bofink <i lang="la">Fringilla coelebs</i></dt><dd>Återvänder i mars–april och hör till Finlands vanligaste häckfåglar. Sången är en snabb, glad tonföljd som slutar med en snärt.</dd></div>
+            <div><dt>Lövsångare <i lang="la">Phylloscopus trochilus</i></dt><dd>Kommer i april–maj efter vintern i Afrika söder om Sahara. Den mjuka, fallande sången låter lite vemodig och hörs ofta från björkarna på gården.</dd></div>
+            <div><dt>Koltrast <i lang="la">Turdus merula</i></dt><dd>Sjunger långsamma, flöjtlika fraser från tak och trädtoppar i vårskymningen. I södra Finland stannar många koltrastar numera över vintern i städerna.</dd></div>
+            <div><dt>Kråka <i lang="la">Corvus cornix</i></dt><dd>Grå och svart, klok och högljudd. Det hesa ”kraa” hörs året runt, och kråkorna håller noga koll på skolgårdarna efter matrester.</dd></div>
+          </dl>
+          <p class="tip">Prova med klassen: lyssna en minut på morgonen och skriv ner varje ljud ni hör. Jämför senare listan med det som stationen hörde.</p>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <span class="article-tag" data-i18n="art2.tag">Migration</span>
+          <h3 class="article-title"><span data-lang="en">Migration you can hear at night</span><span data-lang="fi" hidden>Muutto, jonka kuulee yöllä</span><span data-lang="sv" hidden>Flyttning som hörs på natten</span></h3>
+          <span class="article-lead"><span data-lang="en">On calm autumn nights, thousands of songbirds fly over Finland in the dark. You can't see them, but you can hear them.</span><span data-lang="fi" hidden>Tyyninä syysöinä tuhannet laululinnut lentävät Suomen yli pimeässä. Niitä ei näe, mutta ne kuulee.</span><span data-lang="sv" hidden>Under lugna höstnätter flyger tusentals sångfåglar över Finland i mörkret. Man ser dem inte, men man hör dem.</span></span>
+        </summary>
+        <div class="article-body" data-lang="en">
+          <p>Many small songbirds, such as thrushes and robins, migrate at night, when the air is calmer and cooler and fewer birds of prey are hunting. To keep in touch in the dark, they call as they fly. The redwing's thin, high ‘tsiih’ is one of the most common sounds over Finland on an October night, and the song thrush answers with a short ‘tsip’.</p>
+          <p>Birders record these calls with a microphone pointed at the sky and count them the next morning. The hobby is called nocmig, short for nocturnal migration. A listening station does the same automatically, every night of the season.</p>
+          <p>By day, other birds are on the move. Cranes and geese pass over in noisy flocks, and this autumn great tits broke Finland's one-day migration record at the Hanko bird observatory: more than 20,700 birds on 7 October.</p>
+          <p class="tip">Try it yourself: on a calm, cloudy night in late September or October, stand somewhere quiet outdoors and listen to the sky for ten minutes.</p>
+          <p class="source">Source for the Hanko record: <a href="https://www.birdlife.fi/lintutilanne-20261009/" target="_blank" rel="noopener">BirdLife Suomi, 9 October 2026</a></p>
+        </div>
+        <div class="article-body" data-lang="fi" hidden>
+          <p>Monet pienet laululinnut, kuten rastaat ja punarinnat, muuttavat öisin, kun ilma on tyynempää ja viileämpää eikä petolintuja ole yhtä paljon liikkeellä. Pimeässä ne pitävät yhteyttä ääntelemällä lennossa. Punakylkirastaan ohut, korkea ”tsiih” on yksi lokakuun yön tavallisimmista äänistä Suomen yllä, ja laulurastas vastaa lyhyellä ”tsip”-äänellä.</p>
+          <p>Lintuharrastajat äänittävät näitä ääniä taivaalle suunnatulla mikrofonilla ja laskevat ne seuraavana aamuna. Harrastusta kutsutaan nimellä nocmig, englannin sanoista nocturnal migration eli yömuutto. Kuunteluasema tekee saman automaattisesti joka yö koko muuttokauden ajan.</p>
+          <p>Päivisin liikkeellä on muita lintuja. Kurjet ja hanhet ylittävät maan äänekkäinä parvina, ja tänä syksynä Hangon lintuasemalla rikottiin talitiaisten muuton päiväennätys: 7. lokakuuta laskettiin yli 20 700 talitiaista.</p>
+          <p class="tip">Kokeile itse: mene tyynenä, pilvisenä yönä syyskuun lopussa tai lokakuussa hiljaiseen paikkaan ulos ja kuuntele taivasta kymmenen minuutin ajan.</p>
+          <p class="source">Lähde Hangon ennätykselle: <a href="https://www.birdlife.fi/lintutilanne-20261009/" target="_blank" rel="noopener">BirdLife Suomi 9.10.2026</a></p>
+        </div>
+        <div class="article-body" data-lang="sv" hidden>
+          <p>Många små sångfåglar, som trastar och rödhakar, flyttar på natten när luften är lugnare och svalare och det finns färre rovfåglar i farten. I mörkret håller de kontakt genom att locka under flykten. Rödvingetrastens tunna, höga ”tsiih” är ett av de vanligaste ljuden över Finland en natt i oktober, och taltrasten svarar med ett kort ”tsip”.</p>
+          <p>Fågelskådare spelar in lätena med en mikrofon riktad mot himlen och räknar dem nästa morgon. Hobbyn kallas nocmig, efter engelskans nocturnal migration, nattflyttning. En lyssningsstation gör samma sak automatiskt, varje natt under hela flyttperioden.</p>
+          <p>På dagen är andra fåglar i rörelse. Tranor och gäss drar förbi i högljudda flockar, och i höst slogs Finlands dygnsrekord för flyttande talgoxar vid Hangö fågelstation: över 20 700 fåglar den 7 oktober.</p>
+          <p class="tip">Prova själv: ställ dig på en tyst plats utomhus en lugn, mulen natt i slutet av september eller i oktober och lyssna mot himlen i tio minuter.</p>
+          <p class="source">Källa för Hangörekordet: <a href="https://www.birdlife.fi/lintutilanne-20261009/" target="_blank" rel="noopener">BirdLife Suomi 9.10.2026</a></p>
+        </div>
+      </details>
+
+      <details class="article">
+        <summary>
+          <span class="article-tag" data-i18n="art3.tag">Restoration</span>
+          <h3 class="article-title"><span data-lang="en">Why Europe now counts forest birds every year</span><span data-lang="fi" hidden>Miksi Euroopassa lasketaan nyt metsälintuja joka vuosi</span><span data-lang="sv" hidden>Varför Europa nu räknar skogsfåglar varje år</span></h3>
+          <span class="article-lead"><span data-lang="en">A new EU law turns bird counts into a yardstick for nature restoration.</span><span data-lang="fi" hidden>EU:n uusi laki tekee lintulaskennoista luonnon ennallistamisen mittarin.</span><span data-lang="sv" hidden>En ny EU-lag gör fågelräkningar till en måttstock för naturrestaurering.</span></span>
+        </summary>
+        <div class="article-body" data-lang="en">
+          <p>The EU Nature Restoration Law, Regulation (EU) 2024/1991, entered into force in August 2024. It asks member states to restore damaged ecosystems, with the aim that restoration measures cover at least 20 % of the EU's land and sea areas by 2030.</p>
+          <p>Birds are one of its yardsticks. For forests, each country must achieve a rising trend in the common forest bird index, a figure built from the populations of common forest bird species, and monitor these birds every year. Member states were due to send draft national restoration plans to the European Commission by 1 September 2026.</p>
+          <p>In Finland, birds are counted by skilled volunteers along fixed routes and at fixed points, coordinated by the Finnish Museum of Natural History, Luomus. Those counts remain the backbone of monitoring. Listening stations can add something new: a round-the-clock record of which birds are calling, from places where nobody counts, such as school grounds, parks and the edges of towns.</p>
+          <p>That is the idea behind BongaaBirds: pupils learn, and their data helps show whether nature is recovering where they live.</p>
+          <p class="source">Source: <a href="https://eur-lex.europa.eu/eli/reg/2024/1991/oj" target="_blank" rel="noopener">Regulation (EU) 2024/1991, EUR-Lex</a></p>
+        </div>
+        <div class="article-body" data-lang="fi" hidden>
+          <p>EU:n ennallistamisasetus (EU) 2024/1991 tuli voimaan elokuussa 2024. Se velvoittaa jäsenmaat ennallistamaan heikentyneitä ekosysteemejä. Tavoitteena on, että ennallistamistoimet kattavat vuoteen 2030 mennessä vähintään 20 % EU:n maa- ja merialueista.</p>
+          <p>Linnut ovat yksi asetuksen mittareista. Metsissä jokaisen maan on saatava yleisten metsälintujen indeksi nousuun ja seurattava näitä lintuja joka vuosi. Indeksi lasketaan yleisten metsälintulajien kannoista. Jäsenmaiden piti toimittaa kansallisten ennallistamissuunnitelmiensa luonnokset Euroopan komissiolle 1. syyskuuta 2026 mennessä.</p>
+          <p>Suomessa lintuja laskevat taitavat vapaaehtoiset kiinteillä reiteillä ja pisteillä Luonnontieteellisen keskusmuseon Luomuksen koordinoimina. Nämä laskennat ovat seurannan selkäranka. Kuunteluasemat voivat tuoda niihin jotain uutta: ympärivuorokautista tietoa siitä, mitkä linnut ääntelevät, paikoista joissa kukaan ei laske, kuten koulujen pihoilta, puistoista ja kaupunkien reunoilta.</p>
+          <p>Siitä BongaaBirdsissa on kyse: oppilaat oppivat, ja heidän aineistonsa auttaa näyttämään, palautuuko luonto heidän omalla asuinalueellaan.</p>
+          <p class="source">Lähde: <a href="https://eur-lex.europa.eu/eli/reg/2024/1991/oj" target="_blank" rel="noopener">asetus (EU) 2024/1991, EUR-Lex</a></p>
+        </div>
+        <div class="article-body" data-lang="sv" hidden>
+          <p>EU:s förordning om restaurering av natur, förordning (EU) 2024/1991, trädde i kraft i augusti 2024. Den kräver att medlemsländerna restaurerar skadade ekosystem, och målet är att restaureringsåtgärderna ska omfatta minst 20 % av EU:s land- och havsområden till 2030.</p>
+          <p>Fåglar är en av måttstockarna. I skogarna ska varje land uppnå en ökande trend i indexet för vanliga skogsfåglar, som bygger på bestånden av vanliga skogsfågelarter, och övervaka dessa fåglar varje år. Medlemsländerna skulle lämna in utkast till nationella restaureringsplaner till Europeiska kommissionen senast den 1 september 2026.</p>
+          <p>I Finland räknas fåglarna av kunniga frivilliga längs fasta rutter och vid fasta punkter, samordnat av Naturhistoriska centralmuseet Luomus. De räkningarna är ryggraden i övervakningen. Lyssningsstationer kan tillföra något nytt: uppgifter dygnet runt om vilka fåglar som hörs, från platser där ingen räknar, som skolgårdar, parker och stadens utkanter.</p>
+          <p>Det är tanken bakom BongaaBirds: eleverna lär sig, och deras data hjälper till att visa om naturen återhämtar sig där de bor.</p>
+          <p class="source">Källa: <a href="https://eur-lex.europa.eu/eli/reg/2024/1991/oj" target="_blank" rel="noopener">förordning (EU) 2024/1991, EUR-Lex</a></p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="section band" id="community">
+  <div class="wrap community-grid">
+    <div class="community-copy">
+      <p class="kicker" data-i18n="cm.kicker">Community</p>
+      <h2 data-i18n="cm.title">Join the BongaaBirds community</h2>
+      <p class="body-lead" data-i18n="cm.lead">For teachers, bird lovers and researchers: get the news first, test the map before launch and help us build a listening network across Finland.</p>
+      <p class="fine" data-i18n="cm.adults">The community is for adults. Pupils take part through their school.</p>
+    </div>
+    <form class="form-card" id="community-form" data-kind="community">
+      <div class="form-grid">
+        <div class="field">
+          <label for="cm-email" data-i18n="f.email">Email</label>
+          <input id="cm-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cm-name"><span data-i18n="f.name">Name</span> <span class="opt" data-i18n="f.opt">(optional)</span></label>
+          <input id="cm-name" name="name" type="text" autocomplete="name">
+        </div>
+        <fieldset class="span-2">
+          <legend data-i18n="cm.int">I'm interested in</legend>
+          <div class="interests">
+            <label class="check"><input type="checkbox" name="interests" value="Bird news and articles" checked><span data-i18n="cm.i1">Bird news and articles</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="Building a station with a class"><span data-i18n="cm.i2">Building a station with a class</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="Testing the map and app"><span data-i18n="cm.i3">Testing the map and app</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="Volunteering or translating"><span data-i18n="cm.i4">Volunteering or translating</span></label>
+          </div>
+        </fieldset>
+        <label class="check span-2"><input id="cm-consent" name="consent" type="checkbox" value="yes" required><span data-i18n-html="cm.consent">I agree that FEONA Oy stores my email address to send me community news. I can unsubscribe at any time (<a href="#privacy">privacy</a>).</span></label>
+        <div class="hp" aria-hidden="true"><label for="cm-hp" data-i18n="f.hp">Leave this field empty</label><input id="cm-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <div class="form-actions span-2"><button class="btn btn-primary" type="submit" data-i18n="cm.submit">Join</button></div>
+        <p class="form-status span-2" role="status" hidden></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section" id="privacy">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="pv.kicker">Privacy</p>
+      <h2 data-i18n="pv.title">Birds, not people</h2>
+      <p class="body-lead" data-i18n="pv.lead">The stations are built to listen to birds, and only birds.</p>
+    </div>
+    <div class="privacy-grid">
+      <div class="privacy-item"><h3 data-i18n="pv1.t">No speech leaves the station</h3><p data-i18n="pv1.p">Human speech is filtered out on the station itself, and clips with speech are not sent or stored.</p></div>
+      <div class="privacy-item"><h3 data-i18n="pv2.t">Bird clips on our own server</h3><p data-i18n="pv2.p">Detections and short bird clips are stored on FEONA's own server, so pupils and members can listen to them and check the AI. Verified bird observations may be shared with research partners.</p></div>
+      <div class="privacy-item"><h3 data-i18n="pv3.t">No camera, no names</h3><p data-i18n="pv3.p">The station has a microphone only. We never publish pupils' names or photos, and school stations appear on the map at an approximate location.</p></div>
+      <div class="privacy-item"><h3 data-i18n="pv4.t">Your form details</h3><p data-i18n="pv4.p">Our forms are handled by Formspree, a form service based in the United States, which forwards your message to us by email. We use your details only for your pre-order or membership and delete them on request.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="images/feona-logo.png" width="452" height="140" loading="lazy" alt="FEONA">
+        <p data-i18n="ft.tag">Bird listening stations built by pupils. BongaaBirds is developed by FEONA Oy, Finland.</p>
+        <p class="footer-quip" data-i18n="ft.bongaa">Bongaa is Finnish birding slang for ‘spot it!’ Here you spot birds by ear.</p>
+      </div>
+      <div class="footer-cols">
+        <nav class="footer-nav" aria-labelledby="ft-explore">
+          <p class="footer-h" id="ft-explore" data-i18n="ft.explore">On this page</p>
+          <a href="#how" data-i18n="nav.how">How it works</a>
+          <a href="#station" data-i18n="nav.station">Station</a>
+          <a href="#preorder" data-i18n="nav.preorder">Pre-order</a>
+          <a href="#news" data-i18n="nav.news">News</a>
+          <a href="#articles" data-i18n="nav.articles">Articles</a>
+          <a href="#community" data-i18n="nav.community">Community</a>
+          <a href="#privacy" data-i18n="pv.kicker">Privacy</a>
+        </nav>
+        <div class="footer-contact" id="ft-contact" hidden>
+          <p class="footer-h" data-i18n="ft.contact">Contact</p>
+          <p id="ft-mail" hidden><a id="ft-email" href="#"></a></p>
+          <p id="ft-bid" hidden><span data-i18n="ft.bid">Business ID</span> <span id="ft-bid-val"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="ft-year">2026</span> FEONA Oy</p>
+      <p data-i18n="ft.newsnote">Bird news summaries are our own and link to their original sources.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ===== Settings: fill these in before the site goes live ===== */
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // formspree.io → your form → Integration
+  const CONTACT_EMAIL = "";   // shown in the footer, e.g. "info@example.fi"
+  const BUSINESS_ID = "";     // Y-tunnus, e.g. "1234567-8"
+  const NEWS_URL = "news.json";
+  const NEWS_PAGE = 6;        // news items shown before "Show older news"
+  /* ============================================================= */
+
+  const LANGS = ["en", "fi", "sv"];
+  const LOCALES = { en: "en-GB", fi: "fi-FI", sv: "sv-FI" };
+  const STORE_KEY = "bb-lang";
+
+  // Finnish and Swedish texts. English lives in the page markup.
+  const T = {
+    fi: {
+      "skip": "Siirry sisältöön",
+      "nav.aria": "Päävalikko",
+      "lang.aria": "Kieli",
+      "menu": "Valikko",
+      "nav.how": "Näin se toimii",
+      "nav.station": "Asema",
+      "nav.preorder": "Ennakkotilaus",
+      "nav.news": "Uutiset",
+      "nav.articles": "Artikkelit",
+      "nav.community": "Yhteisö",
+      "hero.eyebrow": "Oppilaiden rakentamat lintujen kuunteluasemat",
+      "hero.title": "Kuule, mitkä linnut käyvät koulunne pihalla",
+      "hero.lead": "Oppilaat rakentavat pienen kuunteluaseman, sijoittavat sen ulos ja seuraavat koulunsa lintuja avoimella kartalla. Tekoäly tunnistaa linnut jo asemalla ja suodattaa ihmisten puheen pois.",
+      "cta.preorder": "Tilaa asema ennakkoon",
+      "cta.join": "Liity yhteisöön",
+      "hero.note": "Ennakkotilaus on maksuton eikä sido mihinkään. Ensimmäiset pilotit keväällä 2027.",
+      "hero.alt": "BongaaBirds-kuunteluasema puisessa linnunpönttökotelossa koulun seinällä",
+      "det.label": "Esimerkkihavainto",
+      "det.species": "Talitiainen",
+      "det.aria": "Talitiaisen kaksisävelisen laulun sonogrammi, taajuudet 2–8 kHz",
+      "det.t": "1,2 s",
+      "det.meta": "klo 6.42 · varmuus 94 %",
+      "how.kicker": "Näin se toimii",
+      "how.title": "Koulun seinältä avoimelle lintukartalle",
+      "step1.title": "Kuuntele",
+      "step1.text": "Oppilaat rakentavat aseman ja kiinnittävät sen seinään, puuhun tai jalustaan. Asema kuuntelee yötä päivää koko muuttokauden ajan.",
+      "step2.title": "Tunnista",
+      "step2.text": "Asemalla toimiva tekoäly tunnistaa lintujen äänet. Ihmisten puhe suodatetaan pois jo asemalla, joten se ei koskaan lähde sieltä.",
+      "step3.title": "Jaa ja tarkista",
+      "step3.text": "Havainnot ja lyhyet lintujen äänileikkeet tallennetaan omalle palvelimellemme ja näytetään kartalla. Oppilaat kuuntelevat leikkeet ja vahvistavat tai korjaavat tekoälyn tunnistuksen.",
+      "how.note": "Kartta ja sovellus avautuvat ensimmäisten pilottien myötä vuonna 2027.",
+      "st.caption": "Havainnekuvia suunnitellusta asemasta",
+      "st.alt": "BongaaBirds-asema jalustalla sammaleisella kalliolla metsässä",
+      "st.kicker": "Asema",
+      "st.title": "Pieni, kestävä ja luokassa rakennettu",
+      "st.lead": "Aseman rakentaminen on osa opetusta: oppilaat kokoavat elektroniikan, lataavat ohjelmiston ja testaavat mikrofonin ennen kuin asema viedään ulos.",
+      "spec.cpu.k": "Suoritin",
+      "spec.cpu.v": "ESP32-S3-luokan mikrokontrolleri, joka tunnistaa linnut suoraan asemalla",
+      "spec.mic.k": "Mikrofoni",
+      "spec.mic.v": "Digitaalinen MEMS-mikrofoni. Vain mikrofoni, ei kameraa.",
+      "spec.gps.k": "Aika ja paikka",
+      "spec.gps.v": "GPS antaa sijainnin ja tarkan yhteisen kellonajan, joten vierekkäiset asemat voivat paikantaa ääntelevän linnun.",
+      "spec.power.k": "Virta",
+      "spec.power.v": "Akku kestää yhden muuttokauden, noin 3 kuukautta; lisävarusteena aurinkopaneeli",
+      "spec.mount.k": "Kiinnitys",
+      "spec.mount.v": "Seinälle puiseen pönttökoteloon, puuhun hihnalla tai jalustalle",
+      "spec.data.k": "Tiedot",
+      "spec.data.v": "Havainnot ja lyhyet, puheettomat äänileikkeet siirtyvät FEONAn omalle palvelimelle",
+      "st.note": "Suunniteltu kokoonpano vuoden 2027 pilotteihin; yksityiskohdat voivat muuttua.",
+      "of.kicker": "Ennakkotilaus",
+      "of.title": "Valitse sopiva vaihtoehto",
+      "of1.tag": "Kouluille",
+      "of1.title": "Luokkapaketti",
+      "of1.price": "750 €",
+      "of1.sub": "+ 250 € vuodessa",
+      "of1.l1": "5 asemasarjaa oppilaiden rakennettavaksi",
+      "of1.l2": "Opettajan opas ja tuntisuunnitelmat",
+      "of1.l3": "Kartta ja äänileikkeiden tarkistus koko luokan käyttöön",
+      "of.choose": "Valitse",
+      "of2.tag": "Kunnille ja tutkijoille",
+      "of2.title": "Valmiit asemat",
+      "of2.price": "400 € / asema",
+      "of2.sub": "+ 150 € vuodessa / asema",
+      "of2.l1": "Valmiiksi kootut ja testatut asemat",
+      "of2.l2": "Tiedot kartalla ja rajapinnan (API) kautta",
+      "of2.l3": "Luonto- ja ennallistamisraportit alkaen 2 000 € vuodessa",
+      "of3.tag": "Lintuharrastajille",
+      "of3.title": "Kotiasema",
+      "of3.price": "Hinta ilmoitetaan myöhemmin",
+      "of3.l1": "Pihalle, mökille tai parvekkeelle",
+      "of3.l2": "Havaintosi yhteiselle kartalle",
+      "of3.l3": "Liity jonotuslistalle jo nyt",
+      "of.note": "Hinnat ovat suuntaa-antavia ja arvonlisäverottomia (alv 0 %). Vahvistamme lopullisen hinnan ja toimitusajan ennen kuin mitään laskutetaan.",
+      "ord.title": "Tilaa asema ennakkoon",
+      "ord.lead": "Kerro, mitä tarvitsette. Otamme yhteyttä ennen vuoden 2027 pilottikautta.",
+      "ord.next": "Mitä seuraavaksi tapahtuu",
+      "ord.n1": "Vahvistamme ennakkotilauksesi sähköpostitse.",
+      "ord.n2": "Sovimme hinnasta ja aikataulusta kanssasi ennen kuin mitään laskutetaan.",
+      "ord.n3": "Ensimmäiset pilotit alkavat keväällä 2027, ja toimitukset seuraavat niiden jälkeen.",
+      "f.name": "Nimi",
+      "f.email": "Sähköposti",
+      "f.opt": "(valinnainen)",
+      "f.type": "Kuka tilaa?",
+      "f.type.school": "Koulu",
+      "f.type.city": "Kunta tai kaupunki",
+      "f.type.research": "Tutkimus- tai luontojärjestö",
+      "f.type.company": "Yritys",
+      "f.type.private": "Yksityishenkilö",
+      "f.org": "Koulu tai organisaatio",
+      "f.product": "Tuote",
+      "f.p.class": "Luokkapaketti (5 sarjaa)",
+      "f.p.ready": "Valmiit asemat",
+      "f.p.home": "Kotiasema",
+      "f.p.unsure": "En ole vielä varma",
+      "f.qty": "Montako pakettia tai asemaa?",
+      "f.country": "Maa",
+      "f.c.fi": "Suomi",
+      "f.c.se": "Ruotsi",
+      "f.c.ee": "Viro",
+      "f.c.other": "Muu maa",
+      "f.start": "Milloin haluaisitte aloittaa?",
+      "f.s.spring": "Keväällä 2027",
+      "f.s.autumn": "Syksyllä 2027",
+      "f.s.later": "2028 tai myöhemmin",
+      "f.msg": "Viesti",
+      "f.msg.ph": "Esimerkiksi mihin asema tulisi tai kysymyksiä paketista",
+      "f.consent": "Hyväksyn, että FEONA Oy tallentaa nämä tiedot ennakkotilaukseni käsittelyä ja yhteydenottoa varten (<a href='#privacy'>tietosuoja</a>).",
+      "f.news": "Lähettäkää minulle myös BongaaBirds-uutisia, noin kerran kuussa",
+      "f.hp": "Jätä tämä kenttä tyhjäksi",
+      "f.submit": "Lähetä ennakkotilaus",
+      "news.kicker": "Lintu-uutiset",
+      "news.title": "Mitä Suomessa ja Euroopassa tapahtuu",
+      "news.lead": "Kokoamme lintu-uutisia suomalaisista ja eurooppalaisista lähteistä kuun 1. ja 15. päivä. Tiivistelmät ovat omiamme; alkuperäisen jutun löydät linkistä.",
+      "news.more": "Näytä vanhemmat uutiset",
+      "art.kicker": "Luettavaa",
+      "art.title": "Artikkeleita linnuista",
+      "art1.tag": "Lajit",
+      "art2.tag": "Muutto",
+      "art3.tag": "Ennallistaminen",
+      "cm.kicker": "Yhteisö",
+      "cm.title": "Liity BongaaBirds-yhteisöön",
+      "cm.lead": "Opettajille, lintuharrastajille ja tutkijoille: saat uutiset ensimmäisten joukossa, pääset testaamaan karttaa ennen julkaisua ja voit auttaa meitä rakentamaan kuunteluverkoston koko Suomeen.",
+      "cm.adults": "Yhteisö on tarkoitettu aikuisille. Oppilaat osallistuvat koulunsa kautta.",
+      "cm.int": "Minua kiinnostaa",
+      "cm.i1": "Lintu-uutiset ja artikkelit",
+      "cm.i2": "Aseman rakentaminen luokan kanssa",
+      "cm.i3": "Kartan ja sovelluksen testaaminen",
+      "cm.i4": "Vapaaehtoistyö tai kääntäminen",
+      "cm.consent": "Hyväksyn, että FEONA Oy tallentaa sähköpostiosoitteeni yhteisön uutisten lähettämistä varten. Voin perua tilauksen milloin tahansa (<a href='#privacy'>tietosuoja</a>).",
+      "cm.submit": "Liity",
+      "pv.kicker": "Tietosuoja",
+      "pv.title": "Lintuja, ei ihmisiä",
+      "pv.lead": "Asemat on tehty kuuntelemaan lintuja, ja vain lintuja.",
+      "pv1.t": "Puhe ei lähde asemalta",
+      "pv1.p": "Ihmisten puhe suodatetaan pois jo asemalla, eikä puhetta sisältäviä leikkeitä lähetetä tai tallenneta.",
+      "pv2.t": "Linnunäänet omalla palvelimellamme",
+      "pv2.p": "Havainnot ja lyhyet lintujen äänileikkeet tallennetaan FEONAn omalle palvelimelle, jotta oppilaat ja jäsenet voivat kuunnella niitä ja tarkistaa tekoälyn tunnistukset. Tarkistettuja lintuhavaintoja voidaan jakaa tutkimuskumppaneille.",
+      "pv3.t": "Ei kameraa, ei nimiä",
+      "pv3.p": "Asemassa on vain mikrofoni. Emme koskaan julkaise oppilaiden nimiä tai kuvia, ja koulujen asemat näkyvät kartalla likimääräisessä sijainnissa.",
+      "pv4.t": "Lomakkeiden tiedot",
+      "pv4.p": "Lomakkeemme käsittelee yhdysvaltalainen lomakepalvelu Formspree, joka välittää viestisi meille sähköpostitse. Käytämme tietojasi vain ennakkotilaukseesi tai jäsenyyteesi ja poistamme ne pyynnöstä.",
+      "ft.tag": "Oppilaiden rakentamat lintujen kuunteluasemat. BongaaBirdsia kehittää FEONA Oy.",
+      "ft.bongaa": "Bongaa linnut korvillasi.",
+      "ft.explore": "Sivulla",
+      "ft.contact": "Yhteystiedot",
+      "ft.bid": "Y-tunnus",
+      "ft.newsnote": "Lintu-uutisten tiivistelmät ovat omiamme, ja ne linkittävät alkuperäisiin lähteisiin."
+    },
+    sv: {
+      "skip": "Hoppa till innehållet",
+      "nav.aria": "Huvudmeny",
+      "lang.aria": "Språk",
+      "menu": "Meny",
+      "nav.how": "Så fungerar det",
+      "nav.station": "Stationen",
+      "nav.preorder": "Förhandsbeställ",
+      "nav.news": "Nyheter",
+      "nav.articles": "Artiklar",
+      "nav.community": "Gemenskap",
+      "hero.eyebrow": "Lyssningsstationer för fåglar, byggda av elever",
+      "hero.title": "Hör vilka fåglar som besöker er skolgård",
+      "hero.lead": "Eleverna bygger en liten lyssningsstation, placerar den utomhus och följer fåglarna runt skolan på en öppen karta. AI:n känner igen fåglarna redan i stationen och filtrerar bort mänskligt tal.",
+      "cta.preorder": "Förhandsbeställ en station",
+      "cta.join": "Gå med i gemenskapen",
+      "hero.note": "Förhandsbeställningen är kostnadsfri och inte bindande. De första piloterna startar våren 2027.",
+      "hero.alt": "En BongaaBirds-lyssningsstation i ett fågelholkshölje av trä på en skolvägg",
+      "det.label": "Exempel på observation",
+      "det.species": "Talgoxe",
+      "det.aria": "Sonogram av talgoxens tvåtoniga sång, frekvenser 2–8 kHz",
+      "det.t": "1,2 s",
+      "det.meta": "kl. 06.42 · säkerhet 94 %",
+      "how.kicker": "Så fungerar det",
+      "how.title": "Från skolans vägg till en öppen fågelkarta",
+      "step1.title": "Lyssna",
+      "step1.text": "Eleverna bygger stationen och sätter upp den på en vägg, ett träd eller ett stativ. Den lyssnar dag och natt under hela flyttperioden.",
+      "step2.title": "Känn igen",
+      "step2.text": "AI i stationen känner igen fåglarnas läten. Mänskligt tal filtreras bort redan i stationen och lämnar den aldrig.",
+      "step3.title": "Dela och granska",
+      "step3.text": "Observationerna och korta ljudklipp med fågelläten sparas på vår egen server och visas på kartan. Eleverna lyssnar på klippen och bekräftar eller rättar AI:ns artbestämning.",
+      "how.note": "Kartan och appen öppnar i samband med de första piloterna 2027.",
+      "st.caption": "Illustrationer av den planerade stationen",
+      "st.alt": "BongaaBirds-stationen på ett stativ på en mossig häll i skogen",
+      "st.kicker": "Stationen",
+      "st.title": "Liten, tålig och byggd i klassrummet",
+      "st.lead": "Att bygga stationen är en del av undervisningen: eleverna monterar elektroniken, laddar in programvaran och testar mikrofonen innan stationen sätts upp utomhus.",
+      "spec.cpu.k": "Processor",
+      "spec.cpu.v": "Mikrokontroller i ESP32-S3-klassen som känner igen fåglarna direkt i stationen",
+      "spec.mic.k": "Mikrofon",
+      "spec.mic.v": "Digital MEMS-mikrofon. Bara mikrofon, ingen kamera.",
+      "spec.gps.k": "Tid och plats",
+      "spec.gps.v": "GPS ger platsen och en exakt gemensam klocka, så att närliggande stationer kan lokalisera en fågel som hörs.",
+      "spec.power.k": "Ström",
+      "spec.power.v": "Batteriet räcker en flyttperiod, cirka 3 månader; solpanel som tillval",
+      "spec.mount.k": "Montering",
+      "spec.mount.v": "På en vägg i ett holkliknande trähölje, på ett träd med rem eller på ett stativ",
+      "spec.data.k": "Data",
+      "spec.data.v": "Observationer och korta ljudklipp utan tal skickas till FEONAs egen server",
+      "st.note": "Planerad specifikation för piloterna 2027; detaljer kan ändras.",
+      "of.kicker": "Förhandsbeställning",
+      "of.title": "Välj det som passar er",
+      "of1.tag": "För skolor",
+      "of1.title": "Klasspaket",
+      "of1.price": "750 €",
+      "of1.sub": "+ 250 € per år",
+      "of1.l1": "5 stationssatser som eleverna bygger",
+      "of1.l2": "Lärarhandledning och lektionsplaner",
+      "of1.l3": "Kartan och granskning av ljudklipp för hela klassen",
+      "of.choose": "Välj",
+      "of2.tag": "För kommuner och forskare",
+      "of2.title": "Färdiga stationer",
+      "of2.price": "400 € per station",
+      "of2.sub": "+ 150 € per år och station",
+      "of2.l1": "Färdigmonterade och testade stationer",
+      "of2.l2": "Data på kartan och via API",
+      "of2.l3": "Natur- och restaureringsrapporter från 2 000 € per år",
+      "of3.tag": "För fågelvänner",
+      "of3.title": "Hemstation",
+      "of3.price": "Pris meddelas senare",
+      "of3.l1": "För trädgården, sommarstugan eller balkongen",
+      "of3.l2": "Dina observationer på den gemensamma kartan",
+      "of3.l3": "Ställ dig i kön redan nu",
+      "of.note": "Riktpriser exklusive moms. Vi bekräftar slutligt pris och leveranstid innan något faktureras.",
+      "ord.title": "Förhandsbeställ en station",
+      "ord.lead": "Berätta vad ni behöver. Vi kontaktar er före pilotsäsongen 2027.",
+      "ord.next": "Vad händer sedan",
+      "ord.n1": "Vi bekräftar din förhandsbeställning per e-post.",
+      "ord.n2": "Vi kommer överens med dig om pris och tidtabell innan något faktureras.",
+      "ord.n3": "De första piloterna startar våren 2027, och leveranserna följer därefter.",
+      "f.name": "Namn",
+      "f.email": "E-post",
+      "f.opt": "(valfritt)",
+      "f.type": "Vem beställer?",
+      "f.type.school": "Skola",
+      "f.type.city": "Kommun eller stad",
+      "f.type.research": "Forsknings- eller naturorganisation",
+      "f.type.company": "Företag",
+      "f.type.private": "Privatperson",
+      "f.org": "Skola eller organisation",
+      "f.product": "Produkt",
+      "f.p.class": "Klasspaket (5 satser)",
+      "f.p.ready": "Färdiga stationer",
+      "f.p.home": "Hemstation",
+      "f.p.unsure": "Vet inte ännu",
+      "f.qty": "Hur många paket eller stationer?",
+      "f.country": "Land",
+      "f.c.fi": "Finland",
+      "f.c.se": "Sverige",
+      "f.c.ee": "Estland",
+      "f.c.other": "Annat land",
+      "f.start": "När vill ni börja?",
+      "f.s.spring": "Våren 2027",
+      "f.s.autumn": "Hösten 2027",
+      "f.s.later": "2028 eller senare",
+      "f.msg": "Meddelande",
+      "f.msg.ph": "Till exempel var stationen skulle stå eller frågor om paketet",
+      "f.consent": "Jag godkänner att FEONA Oy sparar uppgifterna för att hantera min förhandsbeställning och kontakta mig om den (<a href='#privacy'>dataskydd</a>).",
+      "f.news": "Skicka mig också nyheter från BongaaBirds, ungefär en gång i månaden",
+      "f.hp": "Lämna det här fältet tomt",
+      "f.submit": "Skicka förhandsbeställning",
+      "news.kicker": "Fågelnyheter",
+      "news.title": "Vad som händer i Finland och Europa",
+      "news.lead": "Vi samlar fågelnyheter från finländska och europeiska källor den 1 och den 15 varje månad. Sammanfattningarna är våra egna; följ länken för att läsa originalet.",
+      "news.more": "Visa äldre nyheter",
+      "art.kicker": "Läsning",
+      "art.title": "Artiklar om fåglar",
+      "art1.tag": "Arter",
+      "art2.tag": "Flyttning",
+      "art3.tag": "Restaurering",
+      "cm.kicker": "Gemenskap",
+      "cm.title": "Gå med i BongaaBirds-gemenskapen",
+      "cm.lead": "För lärare, fågelvänner och forskare: få nyheterna först, testa kartan före lanseringen och hjälp oss att bygga ett lyssningsnätverk i hela Finland.",
+      "cm.adults": "Gemenskapen är till för vuxna. Elever deltar via sin skola.",
+      "cm.int": "Jag är intresserad av",
+      "cm.i1": "Fågelnyheter och artiklar",
+      "cm.i2": "Att bygga en station med en klass",
+      "cm.i3": "Att testa kartan och appen",
+      "cm.i4": "Volontärarbete eller översättning",
+      "cm.consent": "Jag godkänner att FEONA Oy sparar min e-postadress för att skicka nyheter från gemenskapen. Jag kan avsluta prenumerationen när som helst (<a href='#privacy'>dataskydd</a>).",
+      "cm.submit": "Gå med",
+      "pv.kicker": "Dataskydd",
+      "pv.title": "Fåglar, inte människor",
+      "pv.lead": "Stationerna är byggda för att lyssna på fåglar, och bara fåglar.",
+      "pv1.t": "Inget tal lämnar stationen",
+      "pv1.p": "Mänskligt tal filtreras bort redan i stationen, och klipp med tal skickas eller sparas inte.",
+      "pv2.t": "Fågelklipp på vår egen server",
+      "pv2.p": "Observationer och korta fågelklipp sparas på FEONAs egen server, så att elever och medlemmar kan lyssna på dem och granska AI:ns bestämningar. Granskade fågelobservationer kan delas med forskningspartner.",
+      "pv3.t": "Ingen kamera, inga namn",
+      "pv3.p": "Stationen har bara en mikrofon. Vi publicerar aldrig elevers namn eller bilder, och skolornas stationer visas på kartan med ungefärlig plats.",
+      "pv4.t": "Dina formuläruppgifter",
+      "pv4.p": "Våra formulär hanteras av Formspree, en formulärtjänst i USA som vidarebefordrar ditt meddelande till oss per e-post. Vi använder dina uppgifter endast för din förhandsbeställning eller ditt medlemskap och raderar dem på begäran.",
+      "ft.tag": "Lyssningsstationer för fåglar, byggda av elever. BongaaBirds utvecklas av FEONA Oy i Finland.",
+      "ft.bongaa": "Bongaa betyder ungefär ”kryssa!” på finsk fågelskådarslang. Här kryssar man med öronen.",
+      "ft.explore": "På sidan",
+      "ft.contact": "Kontakt",
+      "ft.bid": "FO-nummer",
+      "ft.newsnote": "Sammanfattningarna av fågelnyheterna är våra egna och länkar till de ursprungliga källorna."
+    }
+  };
+
+  // Messages created by the script.
+  const M = {
+    en: {
+      stSending: "Sending…",
+      stOkPreorder: "Thank you! Your pre-order has been received. We will be in touch by email.",
+      stOkCommunity: "Welcome to the community! Our next news will come to your inbox.",
+      stPreview: "This is a preview, so nothing was sent. The form works once the site is on its own address.",
+      stNotSet: "The form is not connected yet, so nothing was sent.",
+      stError: "Sorry, the form could not be sent. Please try again in a moment.",
+      newsLoading: "Loading news…",
+      newsError: "The news could not be loaded right now.",
+      newsEmpty: "No news yet.",
+      updated: "Updated {date}",
+      readAt: "Read at {source}"
+    },
+    fi: {
+      stSending: "Lähetetään…",
+      stOkPreorder: "Kiitos! Ennakkotilauksesi on vastaanotettu. Olemme yhteydessä sähköpostitse.",
+      stOkCommunity: "Tervetuloa yhteisöön! Seuraavat uutiset tulevat sähköpostiisi.",
+      stPreview: "Tämä on esikatselu, joten mitään ei lähetetty. Lomake toimii, kun sivusto on omassa osoitteessaan.",
+      stNotSet: "Lomaketta ei ole vielä kytketty, joten mitään ei lähetetty.",
+      stError: "Valitettavasti lomaketta ei voitu lähettää. Yritä hetken kuluttua uudelleen.",
+      newsLoading: "Ladataan uutisia…",
+      newsError: "Uutisia ei juuri nyt voitu ladata.",
+      newsEmpty: "Ei vielä uutisia.",
+      updated: "Päivitetty {date}",
+      readAt: "Lue lähteestä: {source}"
+    },
+    sv: {
+      stSending: "Skickar…",
+      stOkPreorder: "Tack! Din förhandsbeställning har tagits emot. Vi hör av oss per e-post.",
+      stOkCommunity: "Välkommen till gemenskapen! Nästa nyheter kommer till din e-post.",
+      stPreview: "Det här är en förhandsvisning, så inget skickades. Formuläret fungerar när webbplatsen ligger på sin egen adress.",
+      stNotSet: "Formuläret är inte kopplat ännu, så inget skickades.",
+      stError: "Tyvärr kunde formuläret inte skickas. Försök igen om en stund.",
+      newsLoading: "Laddar nyheter…",
+      newsError: "Nyheterna kunde inte laddas just nu.",
+      newsEmpty: "Inga nyheter ännu.",
+      updated: "Uppdaterad {date}",
+      readAt: "Läs hos {source}"
+    }
+  };
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const storage = {
+    get(key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
+    set(key, value) { try { window.localStorage.setItem(key, value); } catch (e) { /* storage unavailable */ } }
+  };
+
+  // Remember the English markup so the page can switch back to it.
+  const EN = { text: {}, html: {}, ph: {}, alt: {}, aria: {} };
+  $$("[data-i18n]").forEach(el => { EN.text[el.dataset.i18n] = el.textContent; });
+  $$("[data-i18n-html]").forEach(el => { EN.html[el.dataset.i18nHtml] = el.innerHTML; });
+  $$("[data-i18n-ph]").forEach(el => { EN.ph[el.dataset.i18nPh] = el.getAttribute("placeholder") || ""; });
+  $$("[data-i18n-alt]").forEach(el => { EN.alt[el.dataset.i18nAlt] = el.getAttribute("alt") || ""; });
+  $$("[data-i18n-aria]").forEach(el => { EN.aria[el.dataset.i18nAria] = el.getAttribute("aria-label") || ""; });
+
+  let lang = "en";
+  const pick = (key, kind) => (lang !== "en" && T[lang] && Object.prototype.hasOwnProperty.call(T[lang], key)) ? T[lang][key] : EN[kind][key];
+  const msg = key => (M[lang] && M[lang][key]) || M.en[key] || "";
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    $$("[data-i18n]").forEach(el => { const v = pick(el.dataset.i18n, "text"); if (v != null) el.textContent = v; });
+    $$("[data-i18n-html]").forEach(el => { const v = pick(el.dataset.i18nHtml, "html"); if (v != null) el.innerHTML = v; });
+    $$("[data-i18n-ph]").forEach(el => { const v = pick(el.dataset.i18nPh, "ph"); if (v != null) el.setAttribute("placeholder", v); });
+    $$("[data-i18n-alt]").forEach(el => { const v = pick(el.dataset.i18nAlt, "alt"); if (v != null) el.setAttribute("alt", v); });
+    $$("[data-i18n-aria]").forEach(el => { const v = pick(el.dataset.i18nAria, "aria"); if (v != null) el.setAttribute("aria-label", v); });
+    $$("[data-lang]").forEach(el => { el.hidden = el.dataset.lang !== lang; });
+    $$("[data-set-lang]").forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.setLang === lang)));
+    $$(".form-status").forEach(s => { if (!s.hidden && s.dataset.key) s.textContent = msg(s.dataset.key); });
+    renderNews();
+  }
+
+  function setLang(next, remember) {
+    if (!LANGS.includes(next)) return;
+    lang = next;
+    if (remember) storage.set(STORE_KEY, next);
+    applyLang();
+  }
+
+  function initialLang() {
+    const fromHash = location.hash.replace("#", "").toLowerCase();
+    if (LANGS.includes(fromHash)) return fromHash;
+    const saved = storage.get(STORE_KEY);
+    if (LANGS.includes(saved)) return saved;
+    const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (const p of prefs) {
+      const code = String(p).slice(0, 2).toLowerCase();
+      if (LANGS.includes(code)) return code;
+    }
+    return "en";
+  }
+
+  /* ---------- header ---------- */
+  const nav = $("#site-nav");
+  const menuBtn = $(".menu-btn");
+  const closeMenu = () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); };
+  menuBtn.addEventListener("click", () => {
+    const open = !nav.classList.contains("open");
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", e => { if (e.target.closest("a")) closeMenu(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+  document.addEventListener("click", e => { if (!e.target.closest(".site-header")) closeMenu(); });
+  $$("[data-set-lang]").forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.setLang, true)));
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.replace("#", "").toLowerCase();
+    if (LANGS.includes(h)) setLang(h, true);
+  });
+
+  /* ---------- offers: preselect the product ---------- */
+  $$("[data-product]").forEach(btn => btn.addEventListener("click", () => {
+    $("#po-product").value = btn.dataset.product;
+    const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    $("#order").scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+    setTimeout(() => $("#po-name").focus({ preventScroll: true }), calm ? 0 : 500);
+  }));
+
+  /* ---------- news ---------- */
+  let news = null;
+  let newsFailed = false;
+  let newsShown = NEWS_PAGE;
+
+  function fmtDate(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m) return String(iso || "");
+    const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    try { return new Intl.DateTimeFormat(LOCALES[lang], { day: "numeric", month: "long", year: "numeric" }).format(d); }
+    catch (e) { return String(iso); }
+  }
+  const localText = v => !v ? "" : (typeof v === "string" ? v : (v[lang] || v.en || v.fi || v.sv || ""));
+  function safeHref(u) {
+    try { const x = new URL(u); return (x.protocol === "https:" || x.protocol === "http:") ? x.href : null; }
+    catch (e) { return null; }
+  }
+
+  function renderNews() {
+    const list = $("#news-list");
+    const more = $("#news-more");
+    const updated = $("#news-updated");
+    list.textContent = "";
+    const note = text => { const li = document.createElement("li"); li.className = "news-note"; li.textContent = text; list.append(li); };
+    if (newsFailed) { note(msg("newsError")); more.hidden = true; updated.textContent = ""; return; }
+    if (!news) { note(msg("newsLoading")); more.hidden = true; return; }
+    const items = (Array.isArray(news.items) ? news.items : [])
+      .filter(it => it && typeof it.date === "string")
+      .sort((a, b) => b.date.localeCompare(a.date));
+    if (!items.length) note(msg("newsEmpty"));
+    items.slice(0, newsShown).forEach(it => {
+      const li = document.createElement("li");
+      li.className = "news-item";
+      const time = document.createElement("time");
+      time.className = "news-date";
+      time.dateTime = it.date;
+      time.textContent = fmtDate(it.date);
+      const body = document.createElement("div");
+      body.className = "news-body";
+      const source = document.createElement("p");
+      source.className = "news-source";
+      source.textContent = it.source || "";
+      const title = document.createElement("h3");
+      title.className = "news-title";
+      title.textContent = localText(it.title);
+      const summary = document.createElement("p");
+      summary.className = "news-summary";
+      summary.textContent = localText(it.summary);
+      body.append(source, title, summary);
+      const href = safeHref(it.url);
+      if (href) {
+        const a = document.createElement("a");
+        a.className = "news-link";
+        a.href = href;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = msg("readAt").replace("{source}", it.source || new URL(href).hostname);
+        body.append(a);
+      }
+      li.append(time, body);
+      list.append(li);
+    });
+    more.hidden = items.length <= newsShown;
+    updated.textContent = news.updated ? msg("updated").replace("{date}", fmtDate(news.updated)) : "";
+  }
+
+  $("#news-more").addEventListener("click", () => { newsShown += NEWS_PAGE; renderNews(); });
+
+  async function loadNews() {
+    try {
+      const res = await fetch(NEWS_URL, { cache: "no-cache" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      news = await res.json();
+    } catch (e) {
+      newsFailed = true;
+    }
+    renderNews();
+  }
+
+  /* ---------- forms (Formspree) ---------- */
+  const inFrame = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+  const formReady = /^https:\/\/formspree\.io\/f\/[A-Za-z0-9]+$/.test(FORMSPREE_ENDPOINT);
+
+  function showStatus(form, kind, key) {
+    const s = $(".form-status", form);
+    s.dataset.kind = kind;
+    s.dataset.key = key;
+    s.textContent = msg(key);
+    s.hidden = false;
+  }
+
+  async function send(form) {
+    const kind = form.dataset.kind;
+    if (!formReady) { showStatus(form, "note", inFrame ? "stPreview" : "stNotSet"); return; }
+    const data = new FormData(form);
+    data.set("form", kind);
+    data.set("language", lang);
+    if (kind === "community") {
+      const picks = data.getAll("interests");
+      data.delete("interests");
+      data.set("interests", picks.join(", ") || "-");
+      data.set("_subject", "BongaaBirds: new community member");
+    } else {
+      data.set("_subject", "BongaaBirds pre-order: " + data.get("product") + " x " + data.get("quantity"));
+    }
+    const button = $('button[type="submit"]', form);
+    button.disabled = true;
+    showStatus(form, "busy", "stSending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      form.reset();
+      showStatus(form, "ok", kind === "community" ? "stOkCommunity" : "stOkPreorder");
+    } catch (e) {
+      if (inFrame) showStatus(form, "note", "stPreview");
+      else showStatus(form, "error", "stError");
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  $$("form[data-kind]").forEach(form => form.addEventListener("submit", e => { e.preventDefault(); send(form); }));
+
+  /* ---------- footer ---------- */
+  function renderFooter() {
+    if (CONTACT_EMAIL) {
+      const a = $("#ft-email");
+      a.textContent = CONTACT_EMAIL;
+      a.href = "mailto:" + CONTACT_EMAIL;
+      $("#ft-mail").hidden = false;
+    }
+    if (BUSINESS_ID) {
+      $("#ft-bid-val").textContent = BUSINESS_ID;
+      $("#ft-bid").hidden = false;
+    }
+    $("#ft-contact").hidden = !(CONTACT_EMAIL || BUSINESS_ID);
+    $("#ft-year").textContent = String(new Date().getFullYear());
+  }
+
+  renderFooter();
+  setLang(initialLang(), false);
+  loadNews();
+})();
+</script>
+
+</body></html>
